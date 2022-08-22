@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/mypage.css' %}" />
+    <title>Document</title>
+</head>
+    <body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{% url 'home' %}">취업빽</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="{% url 'home' %}">HOME</a></li>
+								<li><a href="#">COMMUNITY</a></li>
+								<li><a href="{% url 'mypaga' %}">MYPAGE</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<!-- <section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+
+						<!-- Actions -->
+						<section>
+							<ul class="actions stacked">
+								<li><a href="{% url 'login' %}" class="button large fit">Log In</a></li>
+							</ul>
+						</section>
+
+
+						<!-- Links -->
+							<section>
+
+								
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>[스크랩북]AI</h3>
+											<p>2020-10-18부터 수집한 AI 기사들</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Dolor sit amet</h3>
+											<p>Sed vitae justo condimentum</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Feugiat veroeros</h3>
+											<p>Phasellus sed ultricies mi congue</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Etiam sed consequat</h3>
+											<p>Porta lectus amet ultricies</p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+
+					</section>
+
+
+					<!-- Main -->
+                    <div class="container-fluid">
+                        <div class="row flex-xl-nowrap">
+                            <div class="col-md-3 col-xl-2 bd-sidebar">
+                                <div class="collapse bd-links" id="bd-docs-nav" aria-label="Main navigation">
+                                    
+                                    <div class="bd-toc-item"> 
+                                        <img src="{% static "img/home-black-18dp.svg" %}">
+                                        <a class="bd-toc-link" href="{% url 'mypaga' %}">
+                                            모든 스크랩
+                                        </a>
+                                    </div>
+                                    <div class="bd-toc-item">
+                                        <img src="{% static "img/move_to_inbox-black-18dp.svg" %}">
+                                        <a class="bd-toc-link" href="{% url 'scrapbook' %}">
+                                            내 스크랩북
+                                        </a>
+                                    </div>
+
+
+                                    <div class='bd-sidebar-tool'>
+                                        <div class="bd-toc-item">
+                                            <a class="bd-toc-link-name" href="#">
+                                                필터링
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/star-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                중요
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/edit-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                하이라이트
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/local_offer-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                태크
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/article-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                뉴스본문
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/videocam-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                영상
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class='content_container'>
+                                <header class="major">
+                                    <h2>모든 스크랩</h2>
+                                </header>
+                                <div class='news_major1'>
+                                    <div class="col mb-4">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="https://img.hankyung.com/photo/202010/AA.24118570.1.jpg" class="card-img-top" width="100%" height="180" alt="...">
+                                            <div class="card-body">
+
+                                                <a data-toggle="modal" href="#myModal">
+                                                    <h5 class="card-title">네이버, 녹색창 넘어 AI 확장…"읽고, 쓰고, 번역하는 인공지능 개발"</h5>
+                                                    <p class="card-date">2020-10-15</p>
+                                                    <p class="card-text">네이버의 AI 의 확작성</p>
+                                                    <p href="#" class="btn btn-primary"> ... </p>
+                                                </a>
+
+                                                <!-- The Modal -->
+                                                <div id = "myModal" class="modal modal-dialog-scrollable" role="dialog" style="display: none;">
+                                                    <!-- Modal content -->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <span class="close" data-dismiss="modal">x</span>
+                                                            <h5 class="modal-title">네이버, 녹색창 넘어 AI 확장…"읽고, 쓰고, 번역하는 인공지능 개발</h5>
+                                                            <span class="date">2020.10.20</span>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                                "
+                                                                네이버가 차세대 먹거리로 인공지능(AI) 사업에 속도를 내고 있다. 연구개발(R&D)부터 장비 구축, 상품 출시 등 AI 사업 확장을 위한 채비에 분주한 모습이다. 네이버는 AI 기술을 통해 검색, 콘텐츠 사업 고도화를 계획 중이다.
+                                                                    글로벌 AI 연구벨트 조성
+                                                                    네이버, 녹색창 넘어 AI 확장…"읽고, 쓰고, 번역하는 인공지능 개발"
+                                                                    네이버는 중장기 선행 AI 연구를 위해 별도 조직인 ‘네이버 AI 랩’을 이달 7일 개설했다. 네이버 AI 랩은 사내독립기업(CIC) ‘클로바’에서 AI 선행 기술을 연구하던 리서치 그룹을 분리해 규모를 확대한 곳이다. 공통 이미지·비디오 인식 기술, 멀티모달(modal) 생성 모델, 차세대 대규모 언어 모델, 새로운 학습 기법, 인간과 컴퓨터 상호작용(HCI) 등 다양한 주제의 중장기 선행 기술에 대한 연구를 할 계획이다.
+
+                                                                    연구 인력도 대폭 채용할 계획이다. 서울대, KAIST, 연세대 등 국내 유수 대학을 시작으로 산학 협동 프로젝트를 확대해 가며 깊이있는 연구를 이어나갈 계획이다. 연구 결과는 네이버 내 다른 연구 조직들과의 공유를 통해 시너지를 높이고 검색 등 다양한 서비스에 적용한다.
+
+                                                                    네이버 관계자는 “우수한 기술을 개발하기 위해선 시간에 쫓기지 않고 보다 근본적인 주제를 연구할 수 있는 조직이 필요하다”며 “네이버 AI 랩을 통해 AI 연구개발 역량이 더 확대될 것으로 기대한다”고 말했다.
+                                                                    관련기사
+                                                                    "디지털 전환 핵심기술 쉽게 체험"…서비스 문턱 낮춘 SI 업체들
+                                                                    月 4만원대 실속 요금 선보인 KT…'값비싼 5G' 거품 빠지나
+                                                                    양자컴퓨터도 못뚫는 '양자 내성 암호' 만든다
+
+                                                                    네이버는 지난해 말부터 전 세계 AI 연구자들을 하나로 모으기 위해 ‘글로벌 AI 연구 벨트’를 조성하고 있다. 한국, 일본, 프랑스, 베트남 등을 연결하는 네이버 중심의 기술 연구 네트워크다. 네트워크에 속한 국가의 연구자들이 네이버를 중심으로 교류 협력하고 공동투자 등을 진행할 계획이다.
+
+                                                                    지난 7월엔 글로벌 AI 연구 벨트의 파트너로 베트남 하노이과학기술대(HUST)를 선정했다. 1956년 설립된 HUST는 현재 석·박사 1700여 명을 포함해 3만4300여 명의 학생이 재학 중인 베트남 명문 공과대학이다. 프랑스에선 네이버의 자체 조직인 ‘네이버랩스유럽’이 주요 거점으로 선정됐다.
+                                                                    슈퍼컴퓨터로 AI언어 모델 개발
+                                                                    기술 개발을 위한 투자에도 힘쓰고 있다. 네이버는 700페타플롭스(PF·초당 1000조 번 연산) 이상의 성능을 갖춘 국내 최고 수준의 슈퍼컴퓨터를 구축한다고 지난 8일 발표했다. 한국어, 일본어에 대한 ‘초거대 AI 언어 모델’을 개발하기 위해서다.
+
+                                                                    초거대 AI 언어 모델은 AI 스피커, 동시통역, AI 글쓰기 등 언어를 다루는 대부분의 영역에 적용되는 언어 생성 AI 기술이다. 자연스러운 언어 처리가 가능해 AI 기술 수준을 한층 끌어올릴 수 있다. 이를 위해서는 방대한 데이터를 빠르게 처리할 수 있는 슈퍼컴퓨터가 필요하다. 네이버 관계자는 “슈퍼컴퓨터가 구축되면 네이버의 검색, 메신저에 쌓인 방대한 데이터를 신속하게 처리할 수 있게 될 것”이라고 말했다.
+
+
+                                                                    초거대 AI 언어 모델이 완성되면 영어 외 언어 중 최초 사례가 될 전망이다. 이 모델은 네이버의 AI 플랫폼 ‘클로바’의 음성 인식 및 합성 등에 사용된다.
+
+                                                                    네이버는 상품 출시를 통해 시장 가능성을 타진하고 있다. 네이버의 자회사 라인은 이달부터 일본에서 자동차 정비 프랜차이즈 카프론티어와 손잡고 AI 예약시스템 사업을 시작했다. 기존에 정비사 인력을 투입했던 각 지점의 전화 상담 및 예약 업무를 클로바가 개발한 ‘라인AI콜’ 기술로 대체했다. AI는 고객 요청을 접수하고 카프론티어의 예약시스템 ‘타이미’를 통해 고객과 가능한 예약시간을 조율한다. 라인 관계자는 “여전히 전화 예약을 선호하는 일본 중년 남성 수요와 정비사 업무 경감을 동시에 달성할 것으로 기대한다”며 “전화가 연결되지 않아 이탈하는 고객들을 잡아 매출 상승에 도움을 줄 것으로 보인다”고 말했다.
+                                                                    AI 검색 알고리즘 고도화가 관건
+                                                                    국내에는 20일 스마트 조명 ‘클로바램프’를 출시했다. 클로바 램프는 클로바의 인공지능 기술로 책을 대신 읽어주는 기기다. 광학문자판독장치(OCR), 보이스, 비전 등의 기술이 적용됐다. 2000권에 달하는 제휴 도서 음원을 재생하고, 음원이 없는 일반 도서일 경우 AI가 스스로 내용을 판독해 적당한 음성과 분위기로 책을 읽어준다.
+
+                                                                    네이버는 AI 기술을 차세대 먹거리로 꾸준히 강조해왔다. 네이버가 주력 사업으로 삼고 있는 검색과 콘텐츠 분야에서 AI 기술이 무엇보다 중요하기 때문이다. 정보기술(IT)업계 관계자는 “AI 검색 알고리즘으로 소비자에게 적합한 정보를 제공하는 것은 주력 비즈니스의 성공으로 이어질 수 있다”고 말했다.
+
+
+                                                                    실제로 네이버는 작년 콘퍼런스콜에서 AI 기술을 통해 네이버 쇼핑이 성과를 거뒀다고 발표했다. AI 기반 상품 추천 시스템인 ‘에이아이템즈’의 이용률이 출시 2년 만에 80%까지 확대됐고, 전체 쇼핑의 80% 이상이 에이아이템즈를 통해 노출됐다. 한성숙 네이버 대표는 “매주 1600만 명 이상이 방문하는 네이버 쇼핑에서 AI 성과가 두드러지게 나타나고 있다”고 말했다.
+
+                                                                "
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" aria-label="With textarea" style="margin-top: 0px; margin-bottom: 0px; height: 72px;">
+                                                                </textarea>
+                                                            </div>
+                                                            <button type="button" id='scrapBtn' class="btn btn-primary">
+                                                            메모 수정
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-4">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="https://image.newsis.com/2020/10/19/NISI20201019_0000619812_web.jpg?rnd=20201019151905" class="card-img-top" width="100%" height="180" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">인공지능으로 건강검진에서 폐암 찾아낸다</h5>
+                                                <p class="card-date">2020-10-15</p>
+                                                <p class="card-text">어떤 모델을 사용했을까?</p>
+                                                <p href="#" class="btn btn-primary"> ... </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-4">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="http://news.kbs.co.kr/data/news/title_image/newsmp4/changwon/news9/2020/10/14/110_5025597.jpg" class="card-img-top" width="100%" height="180" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">경남 10개 농산물 가격 ‘인공지능’으로 예측</h5>
+                                                <p class="card-date">2020-10-15</p>
+                                                <p class="card-text">농작물 말고 다른것도 예측 해볼까?</p>
+                                                <p href="#" class="btn btn-primary"> ... </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-4">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="http://www.kukinews.com/data/kuk/image/2020/10/15/kuk202010150605.680x.0.jpg" class="card-img-top" width="100%" height="180" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">대덕산단 악취, 인공지능으로 해결한다</h5>
+                                                <p class="card-date">2020-10-15</p>
+                                                <p class="card-text">여기서도 예측 시스템이 적용된다!</p>
+                                                <p href="#" class="btn btn-primary"> ... </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-4">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="http://news.kbs.co.kr/data/news/title_image/newsmp4/newsplaza_gyeongin/2020/10/12/10_5022852.jpg" class="card-img-top" width="100%" height="180" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">‘범죄 잡는 인공지능 CCTV’…스쿨존 등 우선 적용</h5>
+                                                <p class="card-date">2020-10-15</p>
+                                                <p class="card-text">사생활침해 문제는 어떻게 해결했을까?</p>
+                                                <p href="#" class="btn btn-primary"> ... </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                {% comment %} <div class='news_total' style="margin-top: 80px;">
+                                    <header class="major">
+                                        <h2>종합 뉴스</h2>
+                                    </header>
+                                        
+                                </div> {% endcomment %}
+
+
+                                
+
+                                <!-- Pagination -->
+
+                            </div>
+                        </div>
+                    </div>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+			
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+            
+            
+            <script type='text/javascript'>
+				// Get the modal
+				var modal = document.getElementById('myModal');
+		
+				// Get the button that opens the modal
+				{% comment %} var btn = document.getElementsByClassName("Mainimg"); {% endcomment %}
+		
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];                                          
+		
+				// When the user clicks on the button, open the modal 
+				{% comment %} btn.onclick = function() {
+					modal.style.display = "block";
+				} {% endcomment %}
+		
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+					modal.style.display = "none";
+				}
+		
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+			</script>
+
+	</body>
+</html>

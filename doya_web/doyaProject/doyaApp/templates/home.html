@@ -1,0 +1,1430 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+{% load static %}
+{% csrf_token %}
+<html>
+	<head>
+		<title>취업빽</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{% url 'home' %}">취업빽</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="{% url 'home' %}">HOME</a></li>
+								<li><a href="#">COMMUNITY</a></li>
+								{% if user.is_authenticated %}
+								<li><a href="{% url 'mypaga' %}">MYPAGE</a></li>
+								{% endif %}
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<!-- <section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+
+						<!-- Actions -->
+						{% if user.is_authenticated %}
+							<section>
+								<ul class="actions stacked">
+									<li><div> 안녕하세요 {{ user.username }} 님 </div></li>
+									<li><a href="{% url 'logout' %}" class="button large fit">Log Out</a></li>
+								</ul>
+							</section>
+
+							{% comment %} <form id="logoutForm" action="/logout" method="post" class="navbar-right">
+								{% csrf_token %}
+								<ul class="nav navbar-nav navbar-right">
+									<li><span class="navbar-brand">Hello {{ user.username }}!</span></li>
+									<li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
+								</ul>
+							</form> {% endcomment %}
+
+						{% else %}
+							<section>
+								<ul class="actions stacked">
+									<li><a href="{% url 'login' %}" class="button large fit">Log In</a></li>
+								</ul>
+							</section>
+
+						{% endif %}
+
+													<!-- Links -->
+							<section>
+
+								
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>전공변경</h3>
+											{% comment %} <p>2020-10-18부터 수집한 AI 기사들</p> {% endcomment %}
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>스크랩북 공유</h3>
+											{% comment %} <p>Sed vitae justo condimentum</p> {% endcomment %}
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>개인 누적 데이터 확인</h3>
+											{% comment %} <p>Phasellus sed ultricies mi congue</p> {% endcomment %}
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>개인정보 수정</h3>
+											{% comment %} <p>Porta lectus amet ultricies</p> {% endcomment %}
+										</a>
+									</li>
+								</ul>
+							</section>
+
+					</section>
+
+{% comment %} #################################################################################################################################### {% endcomment %}
+					
+					{% if user.is_authenticated %}
+						<!-- Main -->
+
+						<div class='content_container'>
+							<div class='news_major1'>
+								<header class="major">
+									<h2> 전산학&컴퓨터 뉴스 </h2>
+								</header>
+								<div id="main">
+									<div class="row row-cols-1 row-cols-md-3">
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(200, 191, 231, 1)">최신 뉴스</div>
+												<div class='media'>
+													<a data-toggle="modal" href="#myModal" >
+														<img src= {{ recent_news_data_num1.images }} height=192px class="card-img-top" alt="..." />
+													</a>
+													<!-- <button id="myBtn">Open Modal</button> -->
+													<!-- The Modal -->
+													<div id="myModal" class="modal modal-dialog-scrollable" role="dialog">
+														<!-- Modal content -->
+														<div class="modal-content">
+															<div class="modal-header">
+																<span class="close" data-dismiss="modal">&times;</span>
+																<h5 class="modal-title"> {{ recent_news_data_num1.title }} </h5>
+																<span class='date'> {{ recent_news_data_num1.dateline }} </span>
+																{% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button> {% endcomment %}
+																
+															</div>
+															<div class="modal-body">
+																<p> {{ recent_news_data_num1.content}} </p>
+															</div>
+							
+															<div class="modal-footer">
+																<div class="input-group">
+																	{% comment %} <div class="input-group-prepend">
+																		<span class="input-group-text">With textarea</span>
+																	</div> {% endcomment %}
+																	<textarea class="form-control" aria-label="With textarea"></textarea>
+																	</div>
+																	<button type="button" id='scrapBtn' class="btn btn-primary">기사 스크랩</button>
+																		<!-- The Modal -->
+																			<div id="scrapModal" class="modal">
+
+																				<!-- Modal content -->
+																				<div class="modal-content scrap">
+																					
+																					<span class="close" data-dismiss="modal">&times;</span>
+																					<div class='checkbox_scrapbook'>
+																						<div class='checkbox' >
+																							<input type='checkbox' value='1' name='ai_robot'/> 인공지능 로봇</br>
+																							<input type='checkbox' value='2' name='bigdata' /> 빅데이터</br>
+																							<input type='checkbox' value='3' name='iot' /> IoT</br>
+																							<input type='checkbox' value='4' name='security'/ > 보안</br>
+																							<input type='checkbox' value='5' name='new_book'/ > 새로운 스크랩북</br>
+																						</div>
+																						<div class="modal-footer">
+																							<button onclick="display_msg()">Save</button>
+																						</div>
+																						<script>
+																							function display_msg() {
+																								alert("저장되었습니다.")
+																								}
+																							
+																						</script>
+																					</div>
+																				</div>
+																			</div>
+																</div>
+															</div>
+				
+														</div>
+													</div>
+													<div class="card-body">
+														<article class='cd-card-id0'>
+															<div class='cd_wrapper'>	
+																<div class="cd_content">
+																	<h3 class="card-title">
+																		<a data-toggle="modal" href='#myModal'>
+																			<span class='cd_headline_icon'>
+																				<span class='cd_headline_text'>
+																					{{ recent_news_data_num1.title }}
+																				</span>
+																			</span>
+																		</a>
+																	</h3>
+																	<p class="card-text">
+																		<a href={{ recent_news_data_num1.provider_link_page }}>
+																			<span class='cd_content_icon'>
+																				<span class='cd_content_text'>
+																					{{ recent_news_data_num1.hilight }}
+																				</span>
+																			</span>
+																		</a>
+																	</p>
+																</div>
+															</div>
+														</article>
+													</div>
+
+													{% for title in recent_news_data_lst.title %}
+														<ul class="list-group list-group-flush">
+															<li class="list-group-item">
+																<article class='cd-card-id1'>
+																	<a class='rmd_article' href=''>
+																		<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																			{{ title }}
+																		</p> 
+																	</a>
+																</article>
+															</li>
+														</ul>
+													{% endfor %}
+
+													<div class="card-footer">
+														<!-- <a href="#" class="card-link">Card link</a> -->
+														<a href="news_list/" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+													</div>
+												</div>
+											</div>
+
+
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(200, 191, 231, 1)">추천 뉴스</div>
+												<div class='media'>
+													<a data-toggle="modal" href="#myModal" >
+														<img src={{ random_news_data_num1.images }} height=192px class="card-img-top" alt="..." />
+													</a>
+													<!-- <button id="myBtn">Open Modal</button> -->
+													<!-- The Modal -->
+													<div id="myModal" class="modal modal-dialog-scrollable" role="dialog">
+														<!-- Modal content -->
+														<div class="modal-content">
+															<div class="modal-header">
+																<span class="close" data-dismiss="modal">&times;</span>
+																<h5 class="modal-title">{{ random_news_data_num1.title }}</h5>
+																<span class='date'>{{ random_news_data_num1.dateline }}</span>
+																{% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button> {% endcomment %}
+																
+															</div>
+															<div class="modal-body">
+																<p>
+																	{{ random_news_data_num1.content }}
+																</p>
+															</div>
+															<div class="modal-footer">
+																<div class="input-group">
+																	{% comment %} <div class="input-group-prepend">
+																		<span class="input-group-text">With textarea</span>
+																	</div> {% endcomment %}
+																	<textarea class="form-control" aria-label="With textarea"></textarea>
+																	</div>
+																	<button type="button" id='scrapBtn' class="btn btn-primary">기사 스크랩</button>
+																		<!-- The Modal -->
+																			<div id="scrapModal" class="modal">
+
+																				<!-- Modal content -->
+																				<div class="modal-content scrap">
+																					
+																					<span class="close" data-dismiss="modal">&times;</span>
+																					<div class='checkbox_scrapbook'>
+																						<div class='checkbox' >
+																							<input type='checkbox' value='1' name='ai_robot'/> 인공지능 로봇</br>
+																							<input type='checkbox' value='2' name='bigdata' /> 빅데이터</br>
+																							<input type='checkbox' value='3' name='iot' /> IoT</br>
+																							<input type='checkbox' value='4' name='security'/ > 보안</br>
+																							<input type='checkbox' value='5' name='new_book'/ > 새로운 스크랩북</br>
+																						</div>
+																						<div class="modal-footer">
+																							<button onclick="display_msg()">Save</button>
+																						</div>
+																						<script>
+																							function display_msg() {
+																								alert("저장되었습니다.")
+																								}
+																							
+																						</script>
+																					</div>
+																				</div>
+																			</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												<div class="card-body">
+													<article class='cd-card-id0'>
+														<div class='cd_wrapper'>
+															
+															<div class="cd_content">
+																<h3 class="card-title">
+																	<a href='#'>
+																		<span class='cd_headline_icon'>
+																			<span class='cd_headline_text'>
+																				{{ random_news_data_num1.title }}
+																			</span>
+																		</span>
+																	</a>
+																</h3>
+																<p class="card-text">
+																	<a href='#'>
+																		<span class='cd_content_icon'>
+																			<span class='cd_content_text'>
+																				{{ random_news_data_num1.hilight }}
+																			</span>
+																		</span>
+																	</a>
+																</p>
+															</div>
+														<!-- </div> -->
+													</article>
+												</div>
+												<ul class="list-group list-group-flush">
+													{% for title in random_news_data_lst.title %}
+														<li class="list-group-item">
+															<article class='cd-card-id1'>
+																<a class='rmd_article' href='#'>
+																	<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																		{{ title }}
+																	</p> 
+																</a>
+															</article>
+														</li>
+													{% endfor %}
+												</ul>
+												<div class="card-footer">
+													<!-- <a href="#" class="card-link">Card link</a> -->
+													<a href='news_list2\' class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+												</div>
+											</div>
+										</div>
+
+										
+									<div class="col mb-3" style="padding: 0px 8px; background-color: rgba(255, 121, 121, 0.2); " >
+										<div class='card-header' style="background-color: rgba(223, 228, 234,1.0);">
+											<strong>공유</strong>를 많이 한 스크랩북
+										</div>
+										<div class="card" style="width: 18rem; margin-left: 6%;">
+											<div class='card-head'>
+												<a href="#" class="card-head-title">IoT</a>
+												<img class="card-head-img" src="{%static "img/language-black-18dp.svg" %}">
+											</div>
+											<img src="https://130e178e8f8ba617604b-8aedd782b7d22cfe0d1146da69a52436.ssl.cf1.rackcdn.com/gao-assesses-iot-cybersecurity-other-risks-showcase_image-6-a-9926.jpg" class="card-img-top" width="100%" height="180" alt="...">
+											<div class="card-body">
+												<p class="card-text">2020-10-19</p>
+												<div class='card-imgbox'>
+													<img class='card-img' scr = "{%static "img/share-black-18dp.svg" %}">
+												</div>
+											</div>
+										</div>
+										<div class='recbook-footer' style="background-color: blue;"></div>
+									</div>
+
+									<div class="col mb-3" style="padding: 0px 8px; background-color: rgba(255, 121, 121, 0.1) ;" >
+										<div class='card-header' style="background-color: rgba(223, 228, 234,1.0);">
+											<strong>좋아요</strong>가 많은 스크랩북
+										</div>
+										<div class="card" style="width: 18rem; margin-left: 6%;">
+											<div class='card-head'>
+												<a href="#" class="card-head-title">보안</a>
+												<img class="card-head-img" src="{%static "img/language-black-18dp.svg" %}">
+											</div>
+											<img src="https://www.ndsl.kr/ndsl/commons/util/imgFileView.do?fileNm=B20170328104752379_thum.jpg&folderNm=201703&gubun=issue" class="card-img-top" width="100%" height="180" alt="...">
+											<div class="card-body">
+												<p class="card-text">2020-10-19</p>
+												<div class='card-imgbox'>
+													<img class='card-img' scr = "{%static "img/share-black-18dp.svg" %}">
+												</div>
+											</div>
+										</div>
+										<div class='recbook-footer' style="background-color: red; width: 100%;"></div>
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+
+{% comment %} #################################################################################################################################### {% endcomment %}
+
+
+
+
+					{% else %}
+					<!-- Main -->
+
+						<div class='content_container'>
+							<div class='news_major1'>
+								<header class="major">
+									<h2> 연극&영화 뉴스 </h2>
+								</header>
+								<div id="main">
+									<div class="row row-cols-1 row-cols-md-3">
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(200, 191, 231, 1)">최신 뉴스</div>
+												<div class='media'>
+													<a data-toggle="modal" href="#myModal" >
+														<img src="https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ez/2020/10/22/20201021161303_1527616_1200_589.jpg" height=192px class="card-img-top" alt="..." />
+													</a>
+													<!-- <button id="myBtn">Open Modal</button> -->
+													<!-- The Modal -->
+													<div id="myModal" class="modal modal-dialog-scrollable" role="dialog">
+														<!-- Modal content -->
+														<div class="modal-content">
+															<div class="modal-header">
+																<span class="close" data-dismiss="modal">&times;</span>
+																<h5 class="modal-title">박소담, 영화·드라마·예능 이어 연극까지…2020년 쉼 없는 행보</h5>
+																<span class='date'>2020-10-21</span>
+																{% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button> {% endcomment %}
+																
+															</div>
+															<div class="modal-body">
+																<p>
+																	'열일의 아이콘' 박소담이 2020년 쉼 없는 행보를 이어간다.
+
+																	영화 '후쿠오카', 드라마 '청춘기록', 예능 '갬성캠핑'에 이어 연극 '앙리할아버지와 나'까지 박소담의 열일 행보가 눈에 띈다.
+
+																	먼저 지난 8월에 개봉한 영화 '후쿠오카'에서 자신의 본명을 그대로 사용한 소담 역으로 분해 경계를 마음대로 넘나들며 첫사랑 때문에 28년간 앙금을 쌓고 살았던 두 남자 해효와 제문을 꿰뚫어 보는 미스터리한 캐릭터로 활약했다.
+
+																	현재 인기리에 방영 중인 tvN '청춘기록'에서는 안정하 캐릭터로 시청자들과 만나고 있다. 일에서도, 사랑 앞에서도 솔직하고 당당하며, 좌절 앞에 포기하는 것이 아니라 긍정적인 마인드로 이겨내고 성장해나가는 캐릭터를 박소담만의 매력적인 개성과 안정적인 연기력으로 그려내 시청자들의 공감과 지지를 받고 있다.
+
+																	또한 박소담은 JTBC 예능 '갬성캠핑'에서도 빛을 발하고 있다. 앞서 그는 예능 '삼시세끼-산촌편'에서 어떤 일이든지 거침없이 알아서 척척 해내며 야무진 능력 만렙 막내로 활약했던 바 있다. '갬성캠핑'에서는 또래 출연자들과 또 다른 케미를 선사하며, 비타민 같은 존재로 남다른 존재감을 보여주고 있다.
+
+																	박소담의 활약은 이뿐만이 아니다. 2017년 이후 3년만에 연극 '앙리할아버지와 나'의 콘스탄스로 관객들과도 만난다. 앙리의 도움으로 꿈을 찾아가는 대학생 콘스탄스로 나선 박소담은 섬세한 연기력과 사랑스러운 매력으로 또 한 번 관객을 사로잡을 예정이다.
+
+																	캐릭터는 물론 장르를 불문하며 다양한 영역에서 종횡무진 활약하며 높은 인기와 존재감을 실감케 하는 박소담. 끊임없이 열정적인 박소담의 행보가 더욱 기대된다.
+
+																</p>
+															</div>
+							
+															<div class="modal-footer">
+																<div class="input-group">
+																	{% comment %} <div class="input-group-prepend">
+																		<span class="input-group-text">With textarea</span>
+																	</div> {% endcomment %}
+																	<textarea class="form-control" aria-label="With textarea"></textarea>
+																	</div>
+																	<button type="button" id='scrapBtn' class="btn btn-primary">기사 스크랩</button>
+																		<!-- The Modal -->
+																			<div id="scrapModal" class="modal">
+
+																				<!-- Modal content -->
+																				<div class="modal-content scrap">
+																					
+																					<span class="close" data-dismiss="modal">&times;</span>
+																					<div class='checkbox_scrapbook'>
+																						<div class='checkbox' >
+																							<input type='checkbox' value='1' name='ai_robot'/> 인공지능 로봇</br>
+																							<input type='checkbox' value='2' name='bigdata' /> 빅데이터</br>
+																							<input type='checkbox' value='3' name='iot' /> IoT</br>
+																							<input type='checkbox' value='4' name='security'/ > 보안</br>
+																							<input type='checkbox' value='5' name='new_book'/ > 새로운 스크랩북</br>
+																						</div>
+																						<div class="modal-footer">
+																							<button onclick="display_msg()">Save</button>
+																						</div>
+																						<script>
+																							function display_msg() {
+																								alert("저장되었습니다.")
+																								}
+																							
+																						</script>
+																					</div>
+																				</div>
+																			</div>
+																</div>
+															</div>
+				
+														</div>
+													</div>
+													<div class="card-body">
+														<article class='cd-card-id0'>
+															<div class='cd_wrapper'>
+																
+																<div class="cd_content">
+																	<h3 class="card-title">
+																		<a data-toggle="modal" href='#myModal'>
+																			<span class='cd_headline_icon'>
+																				<span class='cd_headline_text'>
+																					박소담, 영화·드라마·예능 이어 연극까지…2020년 쉼 없는 행보
+																				</span>
+																			</span>
+																		</a>
+																	</h3>
+																	<p class="card-text">
+																		<a href='https://news.joins.com/article/23894066'>
+																			<span class='cd_content_icon'>
+																				<span class='cd_content_text'>
+																					'열일의 아이콘' 박소담이 2020년 쉼 없는 행보를 이어간다.
+																					영화 '후쿠오카', 드라마 '청춘기록', 예능 '갬성캠핑'에 이어 연극 '앙리할아버지와 나'까지 박소담의 열일 행보가 눈에 띈다.
+																				</span>
+																			</span>
+																		</a>
+																	</p>
+																</div>
+															</div>
+														</article>
+													</div>
+													<ul class="list-group list-group-flush">
+														<li class="list-group-item">
+															<article class='cd-card-id1'>
+																<a class='rmd_article' href='#'>
+																	<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																		'유퀴즈' 최연소 7급 공무원 "연극영화과 재학…원래 꿈은 아나운서"
+																	</p> 
+																</a>
+															</article>
+														</li>
+														<li class="list-group-item">
+															<article class='cd-card-id2'>
+																<a class='rmd_article' href='#'>
+																	<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																		콘서트, 영화, 연극 골라보는 재미가…문화포털 '슬기로운 추석 문화생활'
+																	</p>	
+																</a>
+															</article>
+														</li>
+														<li class="list-group-item">
+															<article class='cd-card-id2'>
+																<a class='rmd_article' href='#'>
+																	<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																		허윤정 "배우→대학교 연극영화과 교수로 근무 중
+																	</p>
+																</a>
+															</article>
+														</li>
+													</ul>
+													<div class="card-footer">
+														<!-- <a href="#" class="card-link">Card link</a> -->
+														<a href="news_list/" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+													</div>
+												</div>
+											</div>
+
+
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(200, 191, 231, 1)">추천 뉴스</div>
+												<div class='media'>
+													<a data-toggle="modal" href="#myModal" >
+														<img src="https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/mt/2020/09/07/2020090717057450964_1.jpg" height=192px class="card-img-top" alt="..." />
+													</a>
+													<!-- <button id="myBtn">Open Modal</button> -->
+													<!-- The Modal -->
+													<div id="myModal" class="modal modal-dialog-scrollable" role="dialog">
+														<!-- Modal content -->
+														<div class="modal-content">
+															<div class="modal-header">
+																<span class="close" data-dismiss="modal">&times;</span>
+																<h5 class="modal-title">언택트 연기콩쿠르 전개</h5>
+																<span class='date'>2020-10-21</span>
+																{% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button> {% endcomment %}
+																
+															</div>
+															<div class="modal-body">
+
+																<p>
+																	[머니투데이 권현수 기자] 대경대학교 연극영화과는 코로나19에 따른 언택트 시대에 발맞춰 전국 고등학교 청소년을 대상으로 '언택트 연기콩쿠르'를 실시한다고 7일 밝혔다.
+
+																	이번 비대면 연기경연대회는 고등학교 재학생이면 누구나 참여할 수 있다. 참가 부문은 연극연기, 영화연기, 뮤지컬연기 3개 분야로 지원자는 2분 이내 자유 연기를 동영상으로 촬영해 지원하면 된다.
+
+																	수상 분야는 △언택트 연기대상 △부문별 최우수상 △우수연기상 △장려상 등으로 남녀 구분 없이 선발한다. 심사는 분야별 전문가들이 맡는다. 수상자는 상장과 트로피 장학금이 전달된다.
+
+																	특히 수시 지원자가 언택트 연기경연대회에 지원할 경우 개인 의사에 따라 실기평가를 제출 영상으로 비대면 언택트 방식 평가로 할 수 있다.
+
+																	김건표 연극영화과장은 "사회적 거리두기 2.5단계 격상으로 연기 전공희망자와 미래 배우(연기자) 분야 진로를 고민하는 전국 청소년이 연습에 어려움을 겪고 있다"며 "집에서도 스마트폰으로 간단하게 촬영, 지원하는 비대면 연기콩쿠르를 전개한다면, 학생에게 동기를 부여하고 표현력도 향상시킬 수 있다고 판단, 마련했다"고 말했다.
+
+																	한편 대경대 연극영화과는 지난 1997년도에 개설된 전통 있는 학과로 졸업 때까지 1인당 평균 12개 공연작품을 올리고 졸업한다. 학과에서는 4학년 전공심화과정( 공연예술과)를 운영해 졸업 후 곧바로 대학원에 진학할 수 있다.
+
+																	또한 연극영화과는 밀양, 거창, H-스타 등 전공학과 학생들이 겨루는 전국 경연대회에서 17회(대상, 최우수 연기상, 작품상 등)에 달하는 수상 성과를 자랑한다. 연기영상제출과 지원접수는 학과 홈페이지 및 이메일로 내달 8일까지 접수받는다.
+																</p>
+															</div>
+															<div class="modal-footer">
+																<div class="input-group">
+																	{% comment %} <div class="input-group-prepend">
+																		<span class="input-group-text">With textarea</span>
+																	</div> {% endcomment %}
+																	<textarea class="form-control" aria-label="With textarea"></textarea>
+																	</div>
+																	<button type="button" id='scrapBtn' class="btn btn-primary">기사 스크랩</button>
+																		<!-- The Modal -->
+																			<div id="scrapModal" class="modal">
+
+																				<!-- Modal content -->
+																				<div class="modal-content scrap">
+																					
+																					<span class="close" data-dismiss="modal">&times;</span>
+																					<div class='checkbox_scrapbook'>
+																						<div class='checkbox' >
+																							<input type='checkbox' value='1' name='ai_robot'/>인공지능 로봇</br>
+																							<input type='checkbox' value='2' name='bigdata' /> 빅데이터</br>
+																							<input type='checkbox' value='3' name='iot' /> IoT</br>
+																							<input type='checkbox' value='4' name='security'/ > 보안</br>
+																							<input type='checkbox' value='5' name='new_book'/ > 새로운 스크랩북</br>
+																						</div>
+																						<div class="modal-footer">
+																							<button onclick="display_msg()">Save</button>
+																						</div>
+																						<script>
+																							function display_msg() {
+																								alert("저장되었습니다.")
+																								}
+																							
+																						</script>
+																					</div>
+																				</div>
+																			</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												<div class="card-body">
+													<article class='cd-card-id0'>
+														<div class='cd_wrapper'>
+															
+															<div class="cd_content">
+																<h3 class="card-title">
+																	<a href='#'>
+																		<span class='cd_headline_icon'>
+																			<span class='cd_headline_text'>
+																				언택트 연기콩쿠르 전개
+																			</span>
+																		</span>
+																	</a>
+																</h3>
+																<p class="card-text">
+																	<a href='#'>
+																		<span class='cd_content_icon'>
+																			<span class='cd_content_text'>
+																				[머니투데이 권현수 기자] 대경대학교 연극영화과는 코로나19에 따른 언택트 시대에 발맞춰 전국 고등학교 청소년을 대상으로 '언택트 연기콩쿠르'를 실시한다고 7일 밝혔다.
+																				이번 비대면...	
+																			</span>
+																		</span>
+																	</a>
+																</p>
+															</div>
+														<!-- </div> -->
+													</article>
+												</div>
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<article class='cd-card-id1'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	'인종차별 논란' 아카데미상 재구성한 연극 '오더옐로우' 개막
+																</p> 
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																	성남시,제34회 성남문화예술제 온라인 개최
+																</p>	
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	연극 '그리운 입석' 퇴색해 가는 가족의 중요성·가치 일깨워
+																</p>
+															</a>
+														</article>
+													</li>
+												</ul>
+												<div class="card-footer">
+													<!-- <a href="#" class="card-link">Card link</a> -->
+													<a href="#" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+												</div>
+											</div>
+										</div>
+
+										
+									<div class="col mb-3" style="padding: 0px 8px; background-color: rgba(255, 121, 121, 0.2); " >
+										<div class='card-header' style="background-color: rgba(223, 228, 234,1.0);">
+											<strong>공유</strong>를 많이 한 스크랩북
+										</div>
+										<div class="card" style="width: 18rem; margin-left: 6%;">
+											<div class='card-head'>
+												<a href="#" class="card-head-title">연극</a>
+												<img class="card-head-img" src="{%static "img/language-black-18dp.svg" %}">
+											</div>
+											<img src="https://post-phinf.pstatic.net/MjAxOTA2MjdfOSAg/MDAxNTYxNjIyOTEzNTA4.uYBi43fnobj_Fu7FuBgrA2Bbp1oMnfheX_ixNvZDQvQg.jgs8xLpzH0Dd9Co7LvdkCQMYETllKBbNXWUj8FsNdzgg.JPEG/2019_%ED%82%AC%EB%AF%B8%EB%82%98%EC%9A%B0_PRESS3.jpg?type=w1200" class="card-img-top" width="100%" height="180" alt="...">
+											<div class="card-body">
+												<p class="card-text">2020-10-19</p>
+												<div class='card-imgbox'>
+													<img class='card-img' scr = "{%static "img/share-black-18dp.svg" %}">
+												</div>
+											</div>
+										</div>
+										<div class='recbook-footer' style="background-color: blue;"></div>
+									</div>
+
+									<div class="col mb-3" style="padding: 0px 8px; background-color: rgba(255, 121, 121, 0.1);" >
+										<div class='card-header' style="background-color: rgba(223, 228, 234,1.0);">
+											<strong>좋아요</strong>가 많은 스크랩북
+										</div>
+										<div class="card" style="width: 18rem; margin-left: 6%;">
+											<div class='card-head'>
+												<a href="#" class="card-head-title">뮤지컬</a>
+												<img class="card-head-img" src="{%static "img/language-black-18dp.svg" %}">
+											</div>
+											<img src="https://post-phinf.pstatic.net/MjAyMDA0MTBfMTUx/MDAxNTg2NTA0NTA1NTkx.dRXr3Plt4cQjCCTsV4Dq6A7Ns5XlMZ7YxPCdN27gigEg.a0MnRl1K8IvggRgPhRqoxoTt0j5oUBEQkNKLKk-usXsg.JPEG/2019%EB%A7%98%EB%A7%88%EB%AF%B8%EC%95%84_%EB%8F%84%EB%82%98%28%EC%B5%9C%EC%A0%95%EC%9B%90%29_%ED%83%80%EB%83%90%28%ED%99%8D%EC%A7%80%EB%AF%BC%29_%EB%A1%9C%EC%A7%80%28%EB%B0%95%EC%A4%80%EB%A9%B4%29.jpg?type=w1200" class="card-img-top" width="100%" height="180" alt="...">
+											<div class="card-body">
+												<p class="card-text">2020-10-19</p>
+												<div class='card-imgbox'>
+													<img class='card-img' scr = "{%static "img/share-black-18dp.svg" %}">
+												</div>
+											</div>
+										</div>
+										<div class='recbook-footer' style="background-color: red; width: 100%;"></div>
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+	{% comment %} #####################################################################################################################################	{% endcomment %}
+
+
+
+						
+						<br>
+						<br>
+						<br>
+						
+						<div class='content_container'>
+							<div class='news_major1'>
+								<header class="major">
+									<h2> 법 뉴스 </h2>
+								</header>
+								<div id="main">
+									<div class="row row-cols-1 row-cols-md-3">
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(200, 191, 231, 1)">최신 뉴스</div>
+												<div class='media'>
+													<a data-toggle="modal" href="#myModal" >
+														<img src="https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/no/2020/10/22/SSI_20201021103155_V.jpg" height=192px class="card-img-top" alt="..." />
+													</a>
+													<!-- <button id="myBtn">Open Modal</button> -->
+													<!-- The Modal -->
+													<div id="myModal" class="modal modal-dialog-scrollable" role="dialog">
+														<!-- Modal content -->
+														<div class="modal-content">
+															<div class="modal-header">
+																<span class="close" data-dismiss="modal">&times;</span>
+																<h5 class="modal-title">野, '라임·옵티머스' 특검법 공동 발의…'최순실 특검' 1.5배 규모</h5>
+																<span class='date'>2020-10-22</span>
+																{% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button> {% endcomment %}
+																
+															</div>
+															<div class="modal-body">
+																<p>
+																	[서울신문]국민의힘과 국민의당이 22일 라임·옵티머스 특별검사법을 국회 의안과에 제출했다.
+
+																	이날 주호영 국민의힘 원내대표와 권은희 국민의당 원내대표 등은 직접 국회 의안과를 방문해 주 원내대표 이름으로 대표발의한 ‘라임·옵티머스 펀드 금융사기 피해 및 권력형 비리 게이트 의혹사건 진상규명을 위한 특별검사의 임명 등에 관한 법률안’를 제출했다.
+
+																	이번 특검법에 따른 특검팀 규모는 ‘최순실 특검팀’ 규모(파견검사 20명, 파견 공무원 40명 이내)의 1.5배로 사상 최대 규모다.
+
+																	특검법은 특검팀을 파견검사 30명, 파견 공무원 60명 이내로 구성하고 대통령은 특별검사가 추천하는 4명의 특별검사보를 임명하도록 했다. 특별검사는 또 60명 이내의 특별수사관을 임명할 수 있도록 했다.
+
+																	특검 수사 기간은 특검 임명 뒤 20일간의 준비 기간, 70일 이내의 수사 기간으로 설정했다. 다만 공소 제기 여부를 결정하기 어려우면 대통령의 승인을 받아 1회에 한해 수사 기간을 30일 연장할 수 있도록 했다.
+
+																	특별검사는 대한변호사협회가 추천한 4명의 특검 후보자 중 교섭단체가 2명을 합의해 대통령에게 서면으로 추천하고, 대통령은 추천 후보자 2명 중 1명을 특별검사로 임명하도록 했다.
+
+																	국민의힘은 “최근 라임펀드 사기 핵심 피고인 중 한 명이 작성했다는 문건으로 인해 정부·여당은 야당에 화살을 돌리는 한편 법무부 장관이 수사지휘권을 행사해 검찰총장의 수사 지휘를 배제했다”며 “이 사건은 수많은 피해자를 양산한 거대 범죄임에도 정부·여당은 사건의 실체를 밝히기보다는 사건을 은폐·축소하고 자신들에게 유리한 피고인의 진술만 취사선택하는 모습을 보이고 있다”고 지적했다.
+
+																	민주당은 이번 사건에 대한 철저한 검찰 수사를 강조하면서 야당의 특검 요구를 거부하고 있다.
+
+																	이에 대해 주 원내대표는 “관철을 위한 가용할 수 있는 모든 수단을 고려하려 하지만 결국은 국민의 힘으로 관철해야 한다고 생각한다”며 “(예산 심사 보이콧 관련해선) 상황에 따라 여러 가지 방안을 검토하고 있다”고 말했다.
+
+																	주 원내대표는 이날 오후 3시 예정된 김태년 민주당 원내대표와의 회동에서는 고위공직자범죄수사처(공수처)와 특검을 주로 이야기할 것이라고 밝혔다.
+
+																	주 원내대표는 “저희들이 공수처법 개정안도 내놨고, 청와대 특별감찰관과 북한 인권재단 이사 임명을 먼저 요구도 했다”며 “거기에 따른 준비도 하고 있다”고 말했다.
+																</p>
+															</div>
+							
+															<div class="modal-footer">
+																<div class="input-group">
+																	{% comment %} <div class="input-group-prepend">
+																		<span class="input-group-text">With textarea</span>
+																	</div> {% endcomment %}
+																	<textarea class="form-control" aria-label="With textarea"></textarea>
+																	</div>
+																	<button type="button" id='scrapBtn' class="btn btn-primary">기사 스크랩</button>
+																		<!-- The Modal -->
+																			<div id="scrapModal" class="modal">
+
+																				<!-- Modal content -->
+																				<div class="modal-content scrap">
+																					
+																					<span class="close" data-dismiss="modal">&times;</span>
+																					<div class='checkbox_scrapbook'>
+																						<div class='checkbox' >
+																							<input type='checkbox' value='1' name='ai_robot'/> 인공지능 로봇</br>
+																							<input type='checkbox' value='2' name='bigdata' /> 빅데이터</br>
+																							<input type='checkbox' value='3' name='iot' /> IoT</br>
+																							<input type='checkbox' value='4' name='security'/ > 보안</br>
+																							<input type='checkbox' value='5' name='new_book'/ > 새로운 스크랩북</br>
+																						</div>
+																						<div class="modal-footer">
+																							<button onclick="display_msg()">Save</button>
+																						</div>
+																						<script>
+																							function display_msg() {
+																								alert("저장되었습니다.")
+																								}
+																							
+																						</script>
+																					</div>
+																				</div>
+																			</div>
+																</div>
+															</div>
+				
+														</div>
+													</div>
+													<div class="card-body">
+														<article class='cd-card-id0'>
+															<div class='cd_wrapper'>
+																
+																<div class="cd_content">
+																	<h3 class="card-title">
+																		<a data-toggle="modal" href='#myModal'>
+																			<span class='cd_headline_icon'>
+																				<span class='cd_headline_text'>
+																					野, '라임·옵티머스' 특검법 공동 발의…'최순실 특검' 1.5배 규모
+																				</span>
+																			</span>
+																		</a>
+																	</h3>
+																	<p class="card-text">
+																		<a href='https://news.joins.com/article/23894066'>
+																			<span class='cd_content_icon'>
+																				<span class='cd_content_text'>
+																					[서울신문]국민의힘과 국민의당이 22일 라임·옵티머스 특별검사법을 국회 의안과에 제출했다.
+																					이날 주호영 국민의힘 원내대표와...																				</span>
+																			</span>
+																		</a>
+																	</p>
+																</div>
+															</div>
+														</article>
+													</div>
+													<ul class="list-group list-group-flush">
+														<li class="list-group-item">
+															<article class='cd-card-id1'>
+																<a class='rmd_article' href='#'>
+																	<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																		공정법 개정되면 주식시장 혼란 부추겨 애먼 개미들만 피해볼 거라는 재계의 하소연
+																	</p> 
+																</a>
+															</article>
+														</li>
+														<li class="list-group-item">
+															<article class='cd-card-id2'>
+																<a class='rmd_article' href='#'>
+																	<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																		[포토] 법사위 국감, 질의답변하는 윤석열 검찰총장
+																	</p>	
+																</a>
+															</article>
+														</li>
+														<li class="list-group-item">
+															<article class='cd-card-id2'>
+																<a class='rmd_article' href='#'>
+																	<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																		국민의힘, 라임·옵티머스 특검법 발의…"민주, 거부 명분 없어"
+																	</p>
+																</a>
+															</article>
+														</li>
+													</ul>
+													<div class="card-footer">
+														<!-- <a href="#" class="card-link">Card link</a> -->
+														<a href="news_list/" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+													</div>
+												</div>
+											</div>
+
+
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(200, 191, 231, 1)">추천 뉴스</div>
+												<div class='media'>
+													<a data-toggle="modal" href="#myModal" >
+														<img src="https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/hr/2020/10/22/20201022000603_0.jpg" height=192px class="card-img-top" alt="..." />
+													</a>
+													<!-- <button id="myBtn">Open Modal</button> -->
+													<!-- The Modal -->
+													<div id="myModal" class="modal modal-dialog-scrollable" role="dialog">
+														<!-- Modal content -->
+														<div class="modal-content">
+															<div class="modal-header">
+																<span class="close" data-dismiss="modal">&times;</span>
+																<h5 class="modal-title">교황 "동성커플 법적 보호 지지한다"</h5>
+																<span class='date'>2020-10-22</span>
+																{% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button> {% endcomment %}
+																
+															</div>
+															<div class="modal-body">
+
+																<p>
+																	프란치스코(사진) 교황이 동성(同性) 커플이 법적 보호를 받아야 한다며 ‘동성결합법(Civil union law)’ 지지 입장을 공개적으로 밝혔다. 21일(현지시간) 로마국제영화제 개막작으로 상영된 교황 재임 7년을 기록한 다큐멘터리 ‘프란치스코’를 통해서다. 가톨릭계 공식 가르침에 반하는 것이어서 큰 반향이 일 것이라는 관측이다.
+
+																	워싱턴포스트(WP) 등에 따르면 교황은 이 다큐멘터리에 나온 인터뷰에서 “동성애자도 주님의 자녀이고, 하나의 가족이 될 권리를 갖고 있다”며 “동성애자라는 이유로 버려지거나 불행해져선 안 된다”고 말했다. 이어 “우리에게 필요한 건 동성결합법이다. 그들이 법적으로 보호받을 수 있는 길”이라며 “나는 이를 지지한다”고 했다. 2013년 즉위한 이 교황이 동성결합법 지지를 공개한 건 처음이다.
+
+																	동성결합법은 동성 결혼 합법화의 대안으로 제시된 것이다. 유럽 국가와 미국의 일부 주(州)가 채택하고 있다. 이성 간 정상적인 결혼으로 발생하는 모든 권한과 책임을 똑같이 부여하는 게 골자다.
+
+																	프란치스코 교황은 아르헨티나 부에노스아이레스 대주교로 있을 때 동성 결혼 합법화엔 반대하면서도 이들의 권리를 법적으로 보호해야 한다는 입장이었다. 교황이 된 뒤엔 동성애자에 대한 존중과 차별금지를 여러 차례 강조했다. 그는 즉위 직후인 2013년 7월 동성애자 문제 관련, “주님을 찾고 선한 의지를 갖고 있다면 내가 누구를 심판할 수 있겠는가”라고 말했다.
+
+																	교황청 안팎에선 성소수자(LGBTQ) 이슈와 관련한 가톨릭교회의 역사적인 방향 전환이라는 평가가 있다. 미국의 예수회 사제 제임스 마틴은 로이터에 “동성결합법에 대한 교황의 명확하고 공개적인 지지는 가톨릭교회와 성소수자의 관계가 새로운 단계에 진입했음을 상징한다”고 말했다. 홍성원 기자
+																</p>
+															</div>
+															<div class="modal-footer">
+																<div class="input-group">
+																	{% comment %} <div class="input-group-prepend">
+																		<span class="input-group-text">With textarea</span>
+																	</div> {% endcomment %}
+																	<textarea class="form-control" aria-label="With textarea"></textarea>
+																	</div>
+																	<button type="button" id='scrapBtn' class="btn btn-primary">기사 스크랩</button>
+																		<!-- The Modal -->
+																			<div id="scrapModal" class="modal">
+
+																				<!-- Modal content -->
+																				<div class="modal-content scrap">
+																					
+																					<span class="close" data-dismiss="modal">&times;</span>
+																					<div class='checkbox_scrapbook'>
+																						<div class='checkbox' >
+																							<input type='checkbox' value='1' name='ai_robot'/>인공지능 로봇</br>
+																							<input type='checkbox' value='2' name='bigdata' /> 빅데이터</br>
+																							<input type='checkbox' value='3' name='iot' /> IoT</br>
+																							<input type='checkbox' value='4' name='security'/ > 보안</br>
+																							<input type='checkbox' value='5' name='new_book'/ > 새로운 스크랩북</br>
+																						</div>
+																						<div class="modal-footer">
+																							<button onclick="display_msg()">Save</button>
+																						</div>
+																						<script>
+																							function display_msg() {
+																								alert("저장되었습니다.")
+																								}
+																							
+																						</script>
+																					</div>
+																				</div>
+																			</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												<div class="card-body">
+													<article class='cd-card-id0'>
+														<div class='cd_wrapper'>
+															
+															<div class="cd_content">
+																<h3 class="card-title">
+																	<a href='#'>
+																		<span class='cd_headline_icon'>
+																			<span class='cd_headline_text'>
+																				교황 "동성커플 법적 보호 지지한다"
+																			</span>
+																		</span>
+																	</a>
+																</h3>
+																<p class="card-text">
+																	<a href='#'>
+																		<span class='cd_content_icon'>
+																			<span class='cd_content_text'>
+																				프란치스코(사진) 교황이 동성(同性) 커플이 법적 보호를 받아야 한다며 ‘동성결합법(Civil union law)’ 지지 입장을 공개적으로 밝혔다. 21일(현지시간) 로마국제영화제 개막작으로 상영된 교황 재임 7년...
+																			</span>
+																		</span>
+																	</a>
+																</p>
+															</div>
+														<!-- </div> -->
+													</article>
+												</div>
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<article class='cd-card-id1'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	바이오솔루션, "엑소좀 농축법 신규 기술 특허 출원"
+																</p> 
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																	5년 임대 후 분양전환 때 세입자 못 내쫓는 법안 만들어진다
+																</p>	
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	야당 똘똘 뭉쳐 '라임·옵티 특검법' 발의…"민주당 회피 말라"
+																</p>
+															</a>
+														</article>
+													</li>
+												</ul>
+												<div class="card-footer">
+													<!-- <a href="#" class="card-link">Card link</a> -->
+													<a href="#" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+												</div>
+											</div>
+										</div>
+
+										
+									<div class="col mb-3" style="padding: 0px 8px; background-color: rgba(255, 121, 121, 0.2); " >
+										<div class='card-header' style="background-color: rgba(223, 228, 234,1.0);">
+											<strong>공유</strong>를 많이 한 스크랩북
+										</div>
+										<div class="card" style="width: 18rem; margin-left: 6%;">
+											<div class='card-head'>
+												<a href="#" class="card-head-title">법</a>
+												<img class="card-head-img" src="{%static "img/language-black-18dp.svg" %}">
+											</div>
+											<img src="https://lh3.googleusercontent.com/proxy/Hox6cGsx2spYqWrhq0p6WfSAmEo3DEI7-nICfsWFDZdU7_aneFOBLZeu4wIcDKeTex518CDb51JXO6Uh1kCSoomQCnLgvnn1wV84WEawa8YMmpLdF1ARVgCT7NjVakagePopwCivcHJpMf5ijr7CS4scOIRd2RWw2eNPPJD15OWsf0uJjqreIBqV" class="card-img-top" width="100%" height="180" alt="...">
+											<div class="card-body">
+												<p class="card-text">2020-10-19</p>
+												<div class='card-imgbox'>
+													<img class='card-img' scr = "{%static "img/share-black-18dp.svg" %}">
+												</div>
+											</div>
+										</div>
+										<div class='recbook-footer' style="background-color: blue;"></div>
+									</div>
+
+									<div class="col mb-3" style="padding: 0px 8px; background-color: rgba(255, 121, 121, 0.1);" >
+										<div class='card-header' style="background-color: rgba(223, 228, 234,1.0);">
+											<strong>좋아요</strong>가 많은 스크랩북
+										</div>
+										<div class="card" style="width: 18rem; margin-left: 6%;">
+											<div class='card-head'>
+												<a href="#" class="card-head-title">법</a>
+												<img class="card-head-img" src="{%static "img/language-black-18dp.svg" %}">
+											</div>
+											<img src="https://image.zdnet.co.kr/2020/05/22/jtwer_ZxRUb5EgOU05Nq.jpg" class="card-img-top" width="100%" height="180" alt="...">
+											<div class="card-body">
+												<p class="card-text">2020-10-19</p>
+												<div class='card-imgbox'>
+													<img class='card-img' scr = "{%static "img/share-black-18dp.svg" %}">
+												</div>
+											</div>
+										</div>
+										<div class='recbook-footer' style="background-color: red; width: 100%;"></div>
+									</div>
+								</div>
+							</div>
+							{% endif %}
+
+
+
+
+
+
+{% comment %} ####################################################################################################################### {% endcomment %}
+
+
+
+
+
+						<div class='news_total' style="margin-top: 80px;">
+							<header class="major">
+								<h2>종합 뉴스</h2>
+							</header>
+
+								<div id="main">
+									<div class="row row-cols-1 row-cols-md-3">
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(44, 87, 218, 0.5)">오늘의 Hot 뉴스</div>
+												
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<article class='cd-card-id1'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	100㎞ 멀리서 찾아와 범행…종교 극단주의 테러에 유럽 충격
+																</p> 
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																	전북 경찰, 짝사랑 여성 집 찾아가 폭발물 터뜨린 20대 남성 검거
+																</p>	
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	'선거법 위반' 현역 의원 27명 재판에...21대 총선 선거사범 천여 명 기소
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	‘옥토버 서프라이즈’ 불씨 못 살린 서훈…이대로 美 대선 ‘블랙홀’ 속으로
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	총장 지휘 문제라는 법무부 vs 모략이라는 대검
+																</p>
+															</a>
+														</article>
+													</li>
+												</ul>
+												<div class="card-footer">
+													<!-- <a href="#" class="card-link">Card link</a> -->
+													<a href="#" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+												</div>
+											</div>
+										</div>
+
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(44, 87, 218, 0.5)">시사</div>
+										
+												
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<article class='cd-card-id1'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	[단독] 피해자에 "예민하네" 따돌림…안다르 성추행 사건의 전말
+																</p> 
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																	타이어뱅크 "'멀쩡한 휠' 고의 파손 맞다"…"나도 당했다" 속출
+																</p>	
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	신규확진 121명 1주일만에 세자리…지역발생 4주만에 100명 넘어(종합)
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	"영상통화로 본 손자 모습이 마지막" 눈시울 붉힌 할아버지
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	아직 조문객 없는 인천 화재 형제 동생 빈소
+																</p>
+															</a>
+														</article>
+													</li>
+												</ul>
+												<div class="card-footer">
+													<!-- <a href="#" class="card-link">Card link</a> -->
+													<a href="#" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col mb-1" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(44, 87, 218, 0.5)">스포츠</div>
+									
+												
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<article class='cd-card-id1'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	"레비회장님,우리 SON 하고싶은거 다해줘" 토트넘 팬들,'손흥민 재계약' 백지수표 압박까지
+																</p> 
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																	'NC 지명철회' 김유성 "학교폭력, 계속 후회 중…기절놀이는 사실 아니야"[SS영상]
+																</p>	
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	'몸싸움 깡패 페페와 신경전' 스털링도 폭발, 다리 낚아채며 반격
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	'韓야수 첫 WS' 최지만, 1안타 2득점 '임무 완수' [WS2]
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	"충격이 컸다" 이다영이 밝힌 코보컵 충격패와 '김연경 효과'
+																</p>
+															</a>
+														</article>
+													</li>
+												</ul>
+												<div class="card-footer">
+													<!-- <a href="#" class="card-link">Card link</a> -->
+													<a href="#" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+												</div>
+											</div>
+										</div>
+
+										<div class="col mb-4" style="padding: 0px 8px;">
+											<div class="card">
+												<div class="card-header" style="background: rgba(44, 87, 218, 0.5)">연예</div>
+		
+												
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<article class='cd-card-id1'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	아이린 '갑질 스타' 불똥 논란…15년차 에디터 폭로글+과거 SNS 칭찬 삭제[전문]
+																</p> 
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">		
+																	가평 익사 사건 아내, 과거 '신동엽 러브하우스' 출연했나? 시끌시끌…
+																</p>	
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	15년차 에디터, 갑질 피해 폭로 "지옥 같은 20분"…누가 갑질했나 '추측 난무' [전문]
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	15년차 스타일리스트, 갑질 폭로…해시태그에 아이린·슬기 '주목'[전문]
+																</p>
+															</a>
+														</article>
+													</li>
+													<li class="list-group-item">
+														<article class='cd-card-id2'>
+															<a class='rmd_article' href='#'>
+																<p class='cd_headline_icon' style="margin-bottom: 0px;">
+																	[단독] 비와이, 연인과 8년 열애 끝에 12월 결혼
+																</p>
+															</a>
+														</article>
+													</li>
+												</ul>
+												<div class="card-footer">
+													<!-- <a href="#" class="card-link">Card link</a> -->
+													<a href="#" class="card-link" style="border-bottom: dotted 1px rgba(160, 160, 160, 0.65);">더 많은 기사 보기</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								
+
+			
+
+				<!-- Footer -->
+					<section id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+						
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+			<script type='text/javascript'>
+				// Get the modal
+				var modal = document.getElementById("myModal");
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				modal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+				}
+
+			</script>
+			<script>
+				// Get the modal
+				var modal = document.getElementById("scrapModal");
+
+				// Get the button that opens the modal
+				var btn = document.getElementById("scrapBtn");
+
+				// When the user clicks on the button, open the modal
+				btn.onclick = function() {
+				modal.style.display = "block";
+				}
+
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+					}
+				}
+			
+			</script>
+
+	</body>
+</html>

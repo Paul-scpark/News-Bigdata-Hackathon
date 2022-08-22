@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/mypage.css' %}" />
+    <title>Document</title>
+</head>
+    <body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{% url 'home' %}">취업빽</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="{% url 'home' %}">HOME</a></li>
+								<li><a href="#">COMMUNITY</a></li>
+								<li><a href="{% url 'mypaga' %}">MYPAGE</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<!-- <section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+
+						<!-- Actions -->
+						<section>
+							<ul class="actions stacked">
+								<li><a href="{% url 'login' %}" class="button large fit">Log In</a></li>
+							</ul>
+						</section>
+
+
+						<!-- Links -->
+							<section>
+
+								
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>[스크랩북]AI</h3>
+											<p>2020-10-18부터 수집한 AI 기사들</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Dolor sit amet</h3>
+											<p>Sed vitae justo condimentum</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Feugiat veroeros</h3>
+											<p>Phasellus sed ultricies mi congue</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Etiam sed consequat</h3>
+											<p>Porta lectus amet ultricies</p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+
+					</section>
+
+
+					<!-- Main -->
+                    <div class="container-fluid">
+                        <div class="row flex-xl-nowrap">
+                            <div class="col-md-3 col-xl-2 bd-sidebar">
+                                <div class="collapse bd-links" id="bd-docs-nav" aria-label="Main navigation">
+                                    
+                                    <div class="bd-toc-item"> 
+                                        <img src="{% static "img/home-black-18dp.svg" %}">
+                                        <a class="bd-toc-link" href="{% url 'mypaga' %}">
+                                            모든 스크랩
+                                        </a>
+                                    </div>
+                                    <div class="bd-toc-item">
+                                        <img src="{% static "img/move_to_inbox-black-18dp.svg" %}">
+                                        <a class="bd-toc-link" href="{% url 'scrapbook' %}">
+                                            내 스크랩북
+                                        </a>
+                                    </div>
+
+
+                                    <div class='bd-sidebar-tool'>
+                                        <div class="bd-toc-item">
+                                            <a class="bd-toc-link-name" href="#">
+                                                필터링
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/star-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                중요
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/edit-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                하이라이트
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/local_offer-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                태크
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/article-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                뉴스본문
+                                            </a>
+                                        </div>
+                                        <div class="bd-toc-item">
+                                            <img src="{% static "img/videocam-black-18dp.svg" %}">
+                                            <a class="bd-toc-link" href="#">
+                                                영상
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class='content_container'>
+                                <header class="major">
+                                    <h2>모든 스크랩</h2>
+                                </header>
+                                <div class='news_major1'>
+                                    <div class="col mb-4">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="https://image.ajunews.com/content/image/2020/06/30/20200630174605221171.jpg" class="card-img-top" width="100%" height="180" alt="...">
+                                            <div class="card-body">
+
+                                                <a data-toggle="modal" href="#myModal">
+                                                    <h5 class="card-title">카카오톡·패스(PASS) 앱에서 비대면으로 이동통신 가입한다</h5>
+                                                    <p class="card-date">2020-10-15</p>
+                                                    <p class="card-text">카카오의 비대면 서비스 강화</p>
+                                                    <p href="#" class="btn btn-primary"> ... </p>
+                                                </a>
+
+                                                <!-- The Modal -->
+                                                <div id = "myModal" class="modal modal-dialog-scrollable" role="dialog" style="display: none;">
+                                                    <!-- Modal content -->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <span class="close" data-dismiss="modal">x</span>
+                                                            <p class="card-date">2020-10-15</p>
+                                                            <h5 class="modal-title">네이버, 녹색창 넘어 AI 확장…"읽고, 쓰고, 번역하는 인공지능 개발</h5>
+                                                            <span class="date"> ... </span>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                                "
+                                                                앞으로 간편 본인인증 앱 패스(PASS)와 은행 계좌만 있으면 이동통신 서비스에 가입할 수 있게 됐다.
+
+                                                                과학기술정보통신부는 30일 서울 중구 대한상공회의소에서 '제10차 신기술·서비스 심의위원회'를 열고, 총 9건의 규제 샌드박스 과제를 논의했다.
+
+                                                                이날 비대면 이동통신 가입 서비스(2건)와 GPS 기반 앱미터기 등 3건이 임시허가를, 택시 차고지 밖 교대 서비스 등 6건이 실증특례를 각각 받았다.
+
+                                                                비대면 이동통신 가입 서비스는 카카오톡에 앱인앱(앱 속의 앱) 형태로 제공되는 비대면 통신 가입(알뜰폰·KT) 채널을 활용하는 것으로, 스테이지파이브와 KT, 카카오페이가 신청했다.
+
+                                                                현행 전기통신사업법 상 비대면 통신 가입 시 공인 전자 서명, 신용카드, 휴대전화 문자 인증을 통해서만 본인 확인이 가능하다. 카카오페이와 같은 사설 인증서와 복합인증 기술(PASS 앱+계좌 인증)은 사실상 활용이 불가능했다. 하지만 심의위는 올해 12월 시행 예정인 전자서명법 개정안과 이에 따른 전기통신사업법 시행령 개정 전까지 이 서비스에 대해 임시허가를 부여했다.
+
+                                                                과기정통부는 이를 통해 알뜰폰 시장 활성화, 간편 본인 확인에 따른 이용자 편익 확대, 오프라인 개통 시 불법 고객정보 유출 및 이용자 피해 예방 등에 효과가 있을 것으로 기대했다.
+
+                                                                이와 함께 KST모빌리티의 GPS 기반 앱미터기가 임시허가를 받았다. 이 서비스는 GPS 위치 정보를 기반으로 시간, 거리 등을 계산해 주행요금을 산정·부과하는 스마트폰 단말기 형태다. 서울에서 가맹 택시인 마카롱 택시 500대에 한정해 실증 적용된다.
+
+                                                                카카오모빌리티·KM솔루션 및 KST모빌리티의 택시 차고지 밖 교대 서비스는 실증특례를 받았다. 이는 플랫폼 택시(가맹택시) 운전자가 차고지 밖에서 차량 점검, 운송기록 전송, 운전자 근무 교대, 배차관리 등을 원격으로 할 수 있는 서비스다. 다만 여객자동차법 상 택시의 근무교대는 차고지에서 하도록 규정하고 있다.
+
+                                                                또 KM솔루션이 신청한 플랫폼 기반 임시 택시 운전자격 운영, KST모빌리티의 요금 선결제 가맹 택시 서비스, 워프솔루션의 원거리 다중 무선충전 스탠드, 칠링키친의 푸드트럭 공유주방 서비스가 실증특례로 모두 인정됐다.
+
+                                                                장석영 과기정통부 2차관은 "이번 심의위에서는 실생활에 필요한 과제들이 새롭게 지정돼 편의성을 높일 것으로 기대한다"며 "앞으로도 여러 부처들과 긴밀히 협력해 실생활에 필요한 과제들이 빠르게 시장에 출시될 수 있도록 지원하겠다"고 말했다.
+
+                                                                "
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" aria-label="With textarea" style="margin-top: 0px; margin-bottom: 0px; height: 72px;">
+                                                                </textarea>
+                                                            </div>
+                                                            <button type="button" id='scrapBtn' class="btn btn-primary">
+                                                            메모 수정
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+
+
+                                </div>
+
+
+                                {% comment %} <div class='news_total' style="margin-top: 80px;">
+                                    <header class="major">
+                                        <h2>종합 뉴스</h2>
+                                    </header>
+                                        
+                                </div> {% endcomment %}
+
+
+                                
+
+                                <!-- Pagination -->
+
+                            </div>
+                        </div>
+                    </div>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+			
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+            
+            
+            <script type='text/javascript'>
+				// Get the modal
+				var modal = document.getElementById('myModal');
+		
+				// Get the button that opens the modal
+				{% comment %} var btn = document.getElementsByClassName("Mainimg"); {% endcomment %}
+		
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];                                          
+		
+				// When the user clicks on the button, open the modal 
+				{% comment %} btn.onclick = function() {
+					modal.style.display = "block";
+				} {% endcomment %}
+		
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+					modal.style.display = "none";
+				}
+		
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+			</script>
+
+	</body>
+</html>

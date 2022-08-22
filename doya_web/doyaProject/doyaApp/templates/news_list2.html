@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/news_list.css' %}">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <h1><a href="{% url 'home' %}">취업빽</a></h1>
+    <nav class="links">
+      <ul>
+        <li><a href="{% url 'home' %}">HOME</a></li>
+        <li><a href="#">COMMUNITY</a></li>
+        <li><a href="{% url 'mypaga' %}">MYPAGE</a></li>
+      </ul>
+    </nav>
+    <nav class="main">
+      <ul>
+        <li class="search">
+          <a class="fa-search" href="#search">Search</a>
+          <form id="search" method="get" action="#">
+            <input type="text" name="query" placeholder="Search" />
+          </form>
+        </li>
+        <li class="menu">
+          <a class="fa-bars" href="#menu">Menu</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+<!-- Menu -->
+  <section id="menu">
+
+    <!-- Search -->
+      <!-- <section>
+        <form class="search" method="get" action="#">
+          <input type="text" name="query" placeholder="Search" />
+        </form>
+      </section> -->
+
+
+    <!-- Actions -->
+    {% if user.is_authenticated %}
+      <section>
+        <ul class="actions stacked">
+          <li><div> Hello {{ user.username }} </div></li>
+          <li><a href="{% url 'logout' %}" class="button large fit">Log Out</a></li>
+        </ul>
+      </section>
+
+      {% comment %} <form id="logoutForm" action="/logout" method="post" class="navbar-right">
+        {% csrf_token %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><span class="navbar-brand">Hello {{ user.username }}!</span></li>
+          <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
+        </ul>
+      </form> {% endcomment %}
+
+    {% else %}
+      <section>
+        <ul class="actions stacked">
+          <li><a href="{% url 'login' %}" class="button large fit">Log In</a></li>
+        </ul>
+      </section>
+
+    {% endif %}
+
+    <!-- Links -->
+      <section>
+
+        
+        <ul class="links">
+          <li>
+            <a href="#">
+              <h3>[스크랩북]AI</h3>
+              <p>2020-10-18부터 수집한 AI 기사들</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <h3>Dolor sit amet</h3>
+              <p>Sed vitae justo condimentum</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <h3>Feugiat veroeros</h3>
+              <p>Phasellus sed ultricies mi congue</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <h3>Etiam sed consequat</h3>
+              <p>Porta lectus amet ultricies</p>
+            </a>
+          </li>
+        </ul>
+      </section>
+  </section>
+  <div class="container">
+    <br>
+    <h1>더 많은 기사</h1>
+    <hr>
+    <br>
+    <!-- Main -->
+
+    <ul class="list-unstyled">
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01100201/2020/07/01/01100201.20200701040827001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://news.kmib.co.kr/article/view.asp?arcid=0924145393&code=11151400" class="button large fit" >카카오페이·PASS앱 이용 휴대폰 개통 </a></h2>
+          본인인증 애플리케이션(앱)을 활용한 비대면 휴대전화 개통이 가능해진다....
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01100201/2020/06/30/01100201.20200630173932001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://news.kmib.co.kr/article/view.asp?arcid=0014749657&code=61151411&cp=kd" class="button large fit" >카카오페이·PASS앱 통한 이동전화 가입 가능해진다 </a></h2>
+          본인인증 애플리케이션(앱)을 활용한 비대면 휴대전화 개통이 가능해진다...
+          </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01100101/2020/09/03/01100101.20200903161312001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://news.khan.co.kr/kh_news/khan_art_view.html?artid=202009031612001&code=930100" class="button large fit" >배달전문 공유주방 생기고, 앱으로 폰 개통한다 </a></h2>
+          대한상의·과기정통부, 서면으로 ‘규제 샌드박스’ 신속 승인, 여러 사업자, 같은 주방 ...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/02100801/2020/09/03/02100801.20200903120222002.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http:www.asiae.co.kr/article/2020090310560790506" class="button large fit" >'앱으로 폰 개통한다' 대한상의-과기부 샌드박스 승인 </a></h2>
+          [아시아경제 이창환 기자] 배달을 이끄는 공유주방이 새롭게 문을 열고, 간편 인증 어플리케...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/02100851/2020/09/15/02100851.20200915092931001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.ajunews.com/view/20200915092638126" class="button large fit" >오늘부터 카카오톡 앱에서 스마트폰 구매-개통까지 다 된다 </a></h2>
+          카카오톡의 카카오페이를 통해 비대면으로 스마트폰 구입, 개통이 가능해진다. 카카오 자...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/02100851/2020/08/20/02100851.20200820100425001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.ajunews.com/view/20200820095837617" class="button large fit" >"KT에선 신분증 없이 패스 앱만으로 통신 서비스 OK" </a></h2>
+          KT가 실물 신분증 없이도 패스(PASS) 앱의 '모바일 운전면허...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/02100201/2020/03/12/02100201.20200312112047001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://news.moneytoday.co.kr/view/mtview.php?no=2020031210143123632&type=2" class="button large fit" >홈케어·모바일고지서 등 규제샌드박스 안건 7건 심의 </a></h2>
+          (세종=뉴스1) 장수영 기자 = 노형욱 국무조정실장이 23일...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01100611/2020/07/24/01100611.20200724144243001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.seoul.co.kr/news/newsView.php?id=20200724500103" class="button large fit" >택시에 ‘선불·동승요금제’ 나온다…‘앱 미터기’ 도입 스타트 </a></h2>
+          카카오모빌리티가 자사 서비스에 ‘앱 미터기’를 도입한다. 국내 중형택시에 앱 미터기가 도입...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01100201/2020/09/03/01100201.20200903120140001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://news.kmib.co.kr/article/view.asp?arcid=0014974258&code=61151111&cp=kd" class="button large fit" >아직 매장 가니?…이젠 앱으로 휴대폰 개통 </a></h2>
+          앞으로 스마트폰 애플리케이션으로 휴대폰을 개통할 수 있다. 여러 배달음식점 운영자가 하나의...
+        </div>
+      </li>
+
+
+    </ul>
+    <!-- Pagination -->
+    {% comment %} <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav> {% endcomment %}
+
+    <!-- Footer -->
+    <section id="footer">
+      <ul class="icons">
+        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
+      <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+    </section>
+  </div>
+
+
+  <!-- script -->
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/browser.min.js' %}"></script>
+  <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+  <script src="{% static 'assets/js/util.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

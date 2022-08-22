@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/news_list.css' %}">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <h1><a href="{% url 'home' %}">취업빽</a></h1>
+    <nav class="links">
+      <ul>
+        <li><a href="{% url 'home' %}">HOME</a></li>
+        <li><a href="#">COMMUNITY</a></li>
+        <li><a href="{% url 'mypage' %}">MYPAGE</a></li>
+      </ul>
+    </nav>
+    <nav class="main">
+      <ul>
+        <li class="search">
+          <a class="fa-search" href="#search">Search</a>
+          <form id="search" method="get" action="#">
+            <input type="text" name="query" placeholder="Search" />
+          </form>
+        </li>
+        <li class="menu">
+          <a class="fa-bars" href="#menu">Menu</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+<!-- Menu -->
+  <section id="menu">
+
+    <!-- Search -->
+      <!-- <section>
+        <form class="search" method="get" action="#">
+          <input type="text" name="query" placeholder="Search" />
+        </form>
+      </section> -->
+
+
+    <!-- Actions -->
+    {% if user.is_authenticated %}
+      <section>
+        <ul class="actions stacked">
+          <li><div> Hello {{ user.username }} </div></li>
+          <li><a href="{% url 'logout' %}" class="button large fit">Log Out</a></li>
+        </ul>
+      </section>
+
+      {% comment %} <form id="logoutForm" action="/logout" method="post" class="navbar-right">
+        {% csrf_token %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><span class="navbar-brand">Hello {{ user.username }}!</span></li>
+          <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
+        </ul>
+      </form> {% endcomment %}
+
+    {% else %}
+      <section>
+        <ul class="actions stacked">
+          <li><a href="{% url 'login' %}" class="button large fit">Log In</a></li>
+        </ul>
+      </section>
+
+    {% endif %}
+
+    <!-- Links -->
+      <section>
+
+        
+        <ul class="links">
+          <li>
+            <a href="#">
+              <h3>[스크랩북]AI</h3>
+              <p>2020-10-18부터 수집한 AI 기사들</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <h3>Dolor sit amet</h3>
+              <p>Sed vitae justo condimentum</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <h3>Feugiat veroeros</h3>
+              <p>Phasellus sed ultricies mi congue</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <h3>Etiam sed consequat</h3>
+              <p>Porta lectus amet ultricies</p>
+            </a>
+          </li>
+        </ul>
+      </section>
+  </section>
+  <div class="container">
+    <br>
+    <h1>더 많은 기사</h1>
+    <hr>
+    <br>
+    <!-- Main -->
+
+    <ul class="list-unstyled">
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/08100201/2020/01/01/08100201.20200101202938001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="https://imnews.imbc.com/replay/2020/nwdesk/article/5646684_32524.html" class="button large fit" >"이런 것까지 AI가?"…새해 '인공지능 충격' 온다 </a></h2>
+          2020년은 대표적인 미래 기술, 인공지능 AI가 우리 일상에 본격적으로 자...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01600201/2020/01/01/01600201.20200101190030001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.kjdaily.com/news_view.php?n=495892&tmp=20200101&s=36" class="button large fit" >[새해특집]인공지능 단 CCTV…출입부터 결제까지 ‘OK </a></h2>
+          AI는 이제 선택이 아닌 필수다. 국내 공항에 숨어든 밀입국자와 범죄자를 인공지능(AI)으...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01400201/2020/01/01/01400201.20200101185249001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.daejonilbo.com/news/newsitem.asp?pk_no=1403278" class="button large fit" >상명대학교 이종혁 교수 차량통신을 위한 인터넷 표준 RFC 8691 제정 </a></h2>
+          [천안]상명대는 국제 인터넷 표준화 기구IETF)가 소프트웨어공학과 이종혁(사진) 교수의...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01101001/2020/01/01/01101001.20200101181830003.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.hani.co.kr/arti/opinion/readercolumn/922838.html" class="button large fit" >[주주통신원의 눈] 한겨레에 보내는 새해 덕담 / 김태평 </a></h2>
+          경자년 새해 벽두에 한겨레를 만나니 다시 가슴이 벅차다. 지금 세계는 ‘자국권익’이라면...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/02100801/2020/01/01/02100801.20200101173528002.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http:www.asiae.co.kr/article/2020010117314501900" class="button large fit" >나주시, 고령친화도시 국제네트워크 가입인증 선포식 개최 </a></h2>
+          [아시아경제 호남취재본부 이한혁 기자] 전남 나주시(시장 강인규)는 최근 나주문화예술회관에...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/07100501/2020/01/01/07100501.20200101170343002.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.etnews.com/20200101000017" class="button large fit" >4세대 나이스(NEIS) 개방・연계・보안으로 확 달라진다... 1월 중 기본계획 수립 </a></h2>
+          2022년 오픈하는 4세대 교육행정정보시스템(NEIS, 나이스)은 개방과 연계, 보안을 키...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/07100501/2020/01/01/07100501.20200101170341003.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.etnews.com/20191231000089" class="button large fit" >TICN 통신망 '와이브로 →LTE' 추진…더 강해지겠軍 </a></h2>
+          육군이 전술정보통신체계(TICN) 통신망 '와이브로'를 '롱텀에벌루션(LTE)'으로 전환하...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/07100501/2020/01/01/07100501.20200101170333002.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.etnews.com/20191227000243" class="button large fit" >[2020 AI노믹스 산업지도]통신사, AI로 네트워크 최적화 나서 </a></h2>
+          통신사는 인공지능(AI)을 활용해 네트워크 품질과 장애를 실시간으로 진단, 최적 상태를 유...
+        </div>
+      </li>
+      <br>
+      <br>
+      <li class="media">
+        <img height=110px width=200px src="https://www.bigkinds.or.kr/resources/images/01500701/2020/01/01/01500701.20200101161606001.01.jpg" class="mr-3" alt="...">
+        <div class="media-body" >
+          <h2 class="mt-0 mb-1"><a href="http://www.busan.com/view/busan/view.php?code=2020010115585498231" class="button large fit" >올해 편의점에서 모바일 간편결제 비중 10% 돌파 전망 </a></h2>
+          2020년 올해 편의점에서 모바일 간편결제 이용 비중이 전체 고객의 10%를 넘어설 것으로...
+        </div>
+      </li>
+
+
+    </ul>
+    <!-- Pagination -->
+    {% comment %} <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav> {% endcomment %}
+
+    <!-- Footer -->
+    <section id="footer">
+      <ul class="icons">
+        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
+      <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+    </section>
+  </div>
+
+
+  <!-- script -->
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/browser.min.js' %}"></script>
+  <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+  <script src="{% static 'assets/js/util.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
