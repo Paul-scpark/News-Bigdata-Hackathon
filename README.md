@@ -1,6 +1,6 @@
 # 2020-News-Bigdata-Hackathon - 대상 (문체부 장관상) 🏆
 
-문화체육관광부 주관, 뉴스 빅데이터를 활용한 사업 모델 및 공공서비스 발굴 공모전 (2020.09.01 ~ 2020.10.23) - [공모전 설명 링크](https://www.kpf.or.kr/front/board/boardContentsView.do?board_id=254&contents_id=276405f058b44e8487da8f8d8c5e5aa2)
+문화체육관광부 주관, 뉴스 데이터를 활용한 사업 모델 및 공공서비스 발굴 공모전 (2020.09.01 ~ 2020.10.23) - [공모전 설명 링크](https://www.kpf.or.kr/front/board/boardContentsView.do?board_id=254&contents_id=276405f058b44e8487da8f8d8c5e5aa2)
 
   - 📫 아이디어명: 취업빽 (‘너는 앞만 보고 달려가면 돼, 우리가 너의 빽이 되어줄게’)
   - 📫 개요: 코로나 세대가 겪는 일자리 찾기의 어려움을 해결하기 위해 개인에게 맞는 전공별 취업 콘텐츠를 추천하는 커뮤니티
